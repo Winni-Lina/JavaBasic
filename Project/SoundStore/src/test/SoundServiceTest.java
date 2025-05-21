@@ -1,5 +1,6 @@
 package test;
 
+import sound.HashMapSoundDAO;
 import sound.ListSoundDAO;
 import sound.SSSoundService;
 import sound.SoundDAO;
@@ -38,7 +39,8 @@ public class SoundServiceTest {
 	}
 	
 	static void DAOTest() {
-		SoundDAO soundDAO = new ListSoundDAO();
+		//SoundDAO soundDAO = new ListSoundDAO();
+		SoundDAO soundDAO = new HashMapSoundDAO();
 		
 		// 사운드 등록
 		soundDAO.insertSound(new SoundVO("sound1", "YJ", "w", 5000));
