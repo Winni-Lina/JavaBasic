@@ -1,23 +1,16 @@
 package sound;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HashMapSoundDAO implements SoundDAO{
+
+public class HashMapSoundDAO implements SoundDAO {
+
 	protected Map<Integer, SoundVO> soundDB = new HashMap<>();
-	protected int soundSeq = 200;
-
-	@Override
-	public boolean insertSound(SoundVO sound) {
-		sound.setSoundNo(soundSeq++);
-		sound.setRegDate(new Date());
-		
-		return soundDB.put(sound.getSoundNo(), sound) != null;
-	}
-
+	protected int soundSeq = 001;
+	
 	@Override
 	public SoundVO selectSound(int soundNo) {
 		return soundDB.get(soundNo);
@@ -29,8 +22,16 @@ public class HashMapSoundDAO implements SoundDAO{
 	}
 
 	@Override
+	public boolean insertSound(SoundVO sound) {
+		sound.setSoundNo(soundSeq++);
+		soundDB.put(sound.getSoundNo(), sound);
+		return true;
+	}
+
+	@Override
 	public boolean updateSound(SoundVO sound) {
-		return soundDB.put(sound.getSoundNo(), sound) != null;
+		soundDB.put(sound.getSoundNo(), sound);
+		return true;
 	}
 
 	@Override
